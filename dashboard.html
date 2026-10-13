@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — CodeBelajar</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dash">
+<aside class="sidebar">
+  <div class="logo">💻 Code<span>Belajar</span></div>
+  <div class="userbox"><div id="uAvatar" class="avatar">?</div><div><b id="uName">...</b><br><small id="uRole" class="role">...</small></div></div>
+  <button class="menu active" data-page="video" onclick="showPage('video',this)">🎥 Video Materi</button>
+  <button class="menu" data-page="zoom" onclick="showPage('zoom',this)">🔵 Zoom / Live</button>
+  <button class="menu" data-page="chat" onclick="showPage('chat',this)">💬 Live Chat <span id="chatBadge" class="badge" style="display:none">•</span></button>
+  <button class="menu" data-page="materi" onclick="showPage('materi',this)">📄 Materi & Dokumen</button>
+  <button class="menu" data-page="projek" onclick="showPage('projek',this)">🚀 Projek Siswa</button>
+  <div class="side-foot"><button class="btn outline small full" onclick="logout()">Keluar</button></div>
+</aside>
+
+<main class="main">
+<header class="topbar"><h2 id="pageTitle">🎥 Video Materi</h2><span id="clock" class="muted small"></span></header>
+
+<!-- VIDEO -->
+<section id="page-video" class="page">
+  <div class="toolbar">
+    <input id="videoSearch" placeholder="🔍 Cari video..." oninput="renderVideos()">
+    <button class="btn small" id="addVideoBtn" onclick="openModal('videoModal')" style="display:none">+ Tambah Video (Guru)</button>
+  </div>
+  <div id="videoList" class="vgrid"></div>
+  <div id="watchBox" class="watch" style="display:none">
+    <button class="btn outline small" onclick="closeWatch()">✕ Tutup</button>
+    <h3 id="watchTitle"></h3>
+    <div class="videowrap"><iframe id="watchFrame" src="" frameborder="0" allowfullscreen></iframe></div>
+    <p id="watchDesc" class="muted"></p>
+  </div>
+</section>
+
+<!-- ZOOM -->
+<section id="page-zoom" class="page" style="display:none">
+  <div class="panel">
+    <h3>🔵 Jadwal Kelas Zoom</h3>
+    <p class="muted small">Guru menempel link Zoom / Google Meet. Siswa klik Gabung. Atau pakai Kelas Live Instan (Jitsi, gratis tanpa install).</p>
+    <div class="row">
+      <button class="btn small" onclick="startJitsi()">⚡ Mulai Kelas Live Instan</button>
+      <button class="btn outline small" id="addZoomBtn" onclick="openModal('zoomModal')" style="display:none">+ Buat Jadwal Zoom (Guru)</button>
+    </div>
+    <div id="jitsiBox" style="display:none;margin-top:12px">
+      <div class="row"><input id="jitsiRoom" value="kelas-coding-10" style="max-width:220px"><button class="btn small" onclick="embedJitsi()">Gabung Room</button><button class="btn outline small" onclick="document.getElementById('jitsiBox').style.display='none';document.getElementById('jitsiFrame').src=''">Tutup</button></div>
+      <iframe id="jitsiFrame" src="" style="width:100%;height:480px;border:0;border-radius:12px;margin-top:8px" allow="camera; microphone; fullscreen; display-capture"></iframe>
+    </div>
+  </div>
+  <div id="zoomList" class="zgrid"></div>
+</section>
+
+<!-- CHAT -->
+<section id="page-chat" class="page" style="display:none">
+  <div class="chatbox">
+    <div class="chat-head"><b>💬 Diskusi Kelas — Live Chat</b><span class="muted small">realtime • <span id="onlineCount">1</span> online</span><button class="btn outline small" onclick="clearChat()">Hapus (Guru)</button></div>
+    <div id="chatList" class="chat-list"></div>
+    <div class="chat-input"><input id="chatText" placeholder="Tulis pesan... (Enter untuk kirim)" onkeydown="if(event.key==='Enter')sendChat()"><button class="btn" onclick="sendChat()">Kirim</button></div>
+  </div>
+</section>
+
+<!-- MATERI -->
+<section id="page-materi" class="page" style="display:none">
+  <div class="toolbar">
+    <input id="materiSearch" placeholder="🔍 Cari materi / dokumen..." oninput="renderMateri()">
+    <button class="btn small" id="addMateriBtn" onclick="openModal('materiModal')" style="display:none">+ Upload Materi (Guru)</button>
+  </div>
+  <div id="materiList" class="mgrid"></div>
+</section>
+
+<!-- PROJEK -->
+<section id="page-projek" class="page" style="display:none">
+  <div class="panel">
+    <h3>🚀 Projek Siswa — tampil di halaman depan</h3>
+    <p class="muted small">Siswa & guru bisa tambah projek. Isi judul, link demo (Netlify/Vercel/GitHub Pages), link kode, otomatis muncul di landing page.</p>
+  </div>
+  <div class="toolbar">
+    <input id="projekSearch" placeholder="🔍 Cari projek..." oninput="renderProjek()">
+    <button class="btn small" onclick="openModal('projekModal')">+ Tambah Projek</button>
+  </div>
+  <div id="projekList" class="pgrid"></div>
+</section>
+</main>
+
+<!-- MODALS -->
+<div id="videoModal" class="modal"><div class="modal-box">
+  <h3>+ Tambah Video</h3>
+  <input id="v_title" placeholder="Judul video (mis: HTML Dasar)">
+  <input id="v_url" placeholder="Link YouTube / MP4 (https://...)">
+  <select id="v_kat"><option>HTML</option><option>CSS</option><option>JavaScript</option><option>Python</option><option>PHP</option><option>Lainnya</option></select>
+  <textarea id="v_desc" placeholder="Deskripsi singkat"></textarea>
+  <div class="row"><button class="btn" onclick="addVideo()">Simpan</button><button class="btn outline" onclick="closeModal('videoModal')">Batal</button></div>
+</div></div>
+
+<div id="zoomModal" class="modal"><div class="modal-box">
+  <h3>+ Jadwal Zoom</h3>
+  <input id="z_title" placeholder="Judul kelas (mis: Live: CSS Flexbox)">
+  <input id="z_time" type="datetime-local">
+  <input id="z_link" placeholder="Link Zoom / Meet (https://...)">
+  <textarea id="z_desc" placeholder="Catatan / password meeting"></textarea>
+  <div class="row"><button class="btn" onclick="addZoom()">Simpan</button><button class="btn outline" onclick="closeModal('zoomModal')">Batal</button></div>
+</div></div>
+
+<div id="materiModal" class="modal"><div class="modal-box">
+  <h3>+ Upload Materi</h3>
+  <input id="m_title" placeholder="Judul materi">
+  <textarea id="m_desc" placeholder="Deskripsi"></textarea>
+  <input id="m_file" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt,.zip,.png,.jpg,.jpeg">
+  <p class="muted small">File disimpan di browser (maks ~2MB). Untuk file besar, upload ke Google Drive lalu tempel link di deskripsi.</p>
+  <div class="row"><button class="btn" onclick="addMateri()">Upload</button><button class="btn outline" onclick="closeModal('materiModal')">Batal</button></div>
+</div></div>
+
+<div id="projekModal" class="modal"><div class="modal-box">
+  <h3>🚀 Tambah Projek</h3>
+  <input id="p_judul" placeholder="Judul projek (mis: Web Kasir)">
+  <input id="p_tech" placeholder="Teknologi (mis: HTML • CSS • JS)">
+  <input id="p_demo" placeholder="Link demo (https://...)">
+  <input id="p_kode" placeholder="Link kode GitHub (opsional)">
+  <textarea id="p_desc" placeholder="Deskripsi singkat projek"></textarea>
+  <div class="row"><button class="btn" onclick="addProjek()">Terbitkan</button><button class="btn outline" onclick="closeModal('projekModal')">Batal</button></div>
+</div></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

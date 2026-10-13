@@ -4,11 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CodeBelajar — Web Belajar Coding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="landing">
 <header class="nav">
-  <div class="logo">💻 Code<span>Belajar</span></div>
+  <div class="logo">💻 Code<span>Belajar</span><span class="dot">.</span></div>
   <nav>
     <a href="#fitur">Fitur</a>
     <a href="#projek">Projek Siswa</a>
@@ -18,42 +21,72 @@
 </header>
 
 <section class="hero">
-  <div class="hero-text">
-    <h1>Belajar Coding Jadi Mudah & Interaktif</h1>
-    <p>Platform belajar coding untuk siswa & guru: nonton video materi, join kelas Zoom, live chat diskusi, dan sharing dokumen — semua dalam satu web.</p>
+  <div class="hero-text rv">
+    <span class="eyebrow">Platform Belajar Coding</span>
+    <h1>Belajar coding jadi <em>mudah & interaktif.</em></h1>
+    <p class="lead">Satu tempat untuk siswa & guru: tonton video materi, gabung kelas Zoom, diskusi lewat live chat, berbagi dokumen, dan pamerkan projek siswa.</p>
     <div class="hero-btn">
-      <button class="btn" onclick="document.getElementById('auth').scrollIntoView({behavior:'smooth'})">Mulai Belajar Gratis</button>
+      <button class="btn grad" onclick="document.getElementById('auth').scrollIntoView({behavior:'smooth'})">Mulai Belajar Gratis</button>
       <button class="btn outline" onclick="demoLogin()">Coba Demo Siswa</button>
+    </div>
+    <div class="stats">
+      <div><b>6</b><span>Fitur utama</span></div>
+      <div><b>2</b><span>Peran: Guru & Siswa</span></div>
+      <div><b>∞</b><span>Projek dipamerkan</span></div>
     </div>
     <div class="badges">
       <span>✅ Login Guru & Siswa</span><span>🎥 Video Materi</span><span>🔵 Zoom Meeting</span><span>💬 Live Chat</span><span>📄 Sharing Dokumen</span><span>🚀 Projek Siswa</span>
     </div>
   </div>
+  <div class="hero-visual rv d1">
+    <div class="codewin">
+      <div class="bar"><i></i><i></i><i></i><small>halo-dunia.js</small></div>
+      <pre><span class="tc">// projek pertamamu</span>
+<span class="tk">function</span> <span class="tf">sapa</span>(nama) {
+  <span class="tk">return</span> <span class="ts">`Halo, ${nama}! 👋`</span>;
+}
+sapa(<span class="ts">'Coders'</span>); <span class="tc">// → Halo, Coders!</span></pre>
+    </div>
+    <div class="float-chip chip-a">🎥 Video materi baru</div>
+    <div class="float-chip chip-b">💬 128 diskusi hari ini</div>
+  </div>
 </section>
 
-<section id="fitur" class="features">
-  <h2>Fitur Lengkap</h2>
+<section id="fitur" class="section features">
+  <div class="section-head rv">
+    <span class="eyebrow">Fitur</span>
+    <h2>Semua yang dibutuhkan kelas coding modern</h2>
+    <p>Dirancang simpel untuk sekolah — tanpa server, langsung jalan di browser.</p>
+  </div>
   <div class="grid">
-    <div class="card"><h3>🔐 Login & Register</h3><p>Daftar sebagai <b>Guru</b> atau <b>Siswa</b>. Data tersimpan aman di browser (localStorage). Ada akun demo sekali klik.</p></div>
-    <div class="card"><h3>🎥 Video dari Guru</h3><p>Guru tambah video YouTube / link MP4. Siswa nonton langsung di dashboard dengan daftar playlist.</p></div>
-    <div class="card"><h3>🔵 Zoom / Live Class</h3><p>Guru buat jadwal Zoom (link Zoom / Google Meet). Plus tombol <b>Kelas Live Instan via Jitsi</b> tanpa install.</p></div>
-    <div class="card"><h3>💬 Live Chat</h3><p>Chat diskusi kelas realtime antar tab/browser. Otomatis update, tampil nama & peran.</p></div>
-    <div class="card"><h3>📄 Sharing Materi</h3><p>Upload & download PDF, DOC, PPT, ZIP, gambar. Cari materi, hapus, dan lihat siapa pengupload.</p></div>
-    <div class="card"><h3>🚀 Projek Siswa</h3><p>Hasil web & projek siswa tampil di halaman depan. Siswa submit link demo + GitHub langsung dari dashboard.</p></div>
-    <div class="card"><h3>📱 Responsif</h3><p>Bisa dibuka di HP, tablet, laptop. Tanpa server, cukup double-klik <code>index.html</code>.</p></div>
+    <div class="card rv"><div class="ico">🔐</div><h3>Login & Register</h3><p>Daftar sebagai <b>Guru</b> atau <b>Siswa</b>. Data tersimpan aman di browser (localStorage). Ada akun demo sekali klik.</p></div>
+    <div class="card rv d1"><div class="ico">🎥</div><h3>Video dari Guru</h3><p>Guru tambah video YouTube / link MP4. Siswa nonton langsung di dashboard dengan daftar playlist.</p></div>
+    <div class="card rv d2"><div class="ico">🔵</div><h3>Zoom / Live Class</h3><p>Guru buat jadwal Zoom (link Zoom / Google Meet). Plus tombol <b>Kelas Live Instan via Jitsi</b> tanpa install.</p></div>
+    <div class="card rv"><div class="ico">💬</div><h3>Live Chat</h3><p>Chat diskusi kelas realtime antar tab/browser. Otomatis update, tampil nama & peran.</p></div>
+    <div class="card rv d1"><div class="ico">📄</div><h3>Sharing Materi</h3><p>Upload & download PDF, DOC, PPT, ZIP, gambar. Cari materi, hapus, dan lihat siapa pengupload.</p></div>
+    <div class="card rv d2"><div class="ico">🚀</div><h3>Projek Siswa</h3><p>Hasil web & projek siswa tampil di halaman depan. Siswa submit link demo + GitHub langsung dari dashboard.</p></div>
+    <div class="card rv d3"><div class="ico">📱</div><h3>Responsif</h3><p>Bisa dibuka di HP, tablet, laptop. Tanpa server, cukup double-klik <code>index.html</code>.</p></div>
   </div>
 </section>
 
 <section id="projek" class="showcase">
-  <h2>🚀 Hasil Web & Projek Siswa</h2>
-  <p class="muted-light">Karya nyata siswa — klik Demo untuk lihat langsung, klik Kode untuk lihat source.</p>
+  <div class="inner">
+  <div class="section-head rv">
+    <span class="eyebrow">Showcase</span>
+    <h2>Hasil Web & Projek Siswa</h2>
+    <p>Karya nyata siswa — klik Demo untuk lihat langsung, klik Kode untuk lihat source.</p>
+  </div>
   <div class="toolbar-light"><input id="homeProjekSearch" placeholder="🔍 Cari projek / nama siswa..." oninput="renderHomeProjek()"></div>
   <div id="homeProjekList" class="pgrid"></div>
-  <p class="muted-light small" style="margin-top:12px">Punya karya? Masuk sebagai Siswa → Dashboard → menu 🚀 Projek Siswa → Tambah Projek. Otomatis tampil di sini.</p>
+  <p class="note small">Punya karya? Masuk sebagai Siswa → Dashboard → menu 🚀 Projek Siswa → Tambah Projek. Otomatis tampil di sini.</p>
+  </div>
 </section>
 
-<section id="cara" class="how">
-  <h2>Cara Pakai</h2>
+<section id="cara" class="section how">
+  <div class="section-head rv">
+    <span class="eyebrow">Panduan</span>
+    <h2>Mulai dalam 4 langkah</h2>
+  </div>
   <ol>
     <li>Buka file <code>index.html</code> di browser, klik <b>Daftar</b> → pilih peran Guru / Siswa.</li>
     <li>Login → otomatis masuk ke <b>Dashboard</b>.</li>
@@ -93,7 +126,7 @@
   </div>
 </section>
 
-<footer>© 2026 CodeBelajar • Dibuat untuk belajar coding • Data demo tersimpan di localStorage browser</footer>
+<footer class="site">© 2026 CodeBelajar • Dibuat untuk belajar coding • Data demo tersimpan di localStorage browser</footer>
 <script src="js/auth.js"></script>
 <script>
 const LS_P='cb_projects';
@@ -122,7 +155,7 @@ async function renderHomeProjek(){
     <p class="pdesc">${esc(p.desc||'')}</p>
     <div class="row"><a href="${esc(p.demo||'#')}" target="_blank"><button class="btn small">🌐 Demo</button></a>
     ${p.kode?`<a href="${esc(p.kode)}" target="_blank"><button class="btn outline small">💻 Kode</button></a>`:''}</div></div>`
-  ).join('')||'<p class="muted-light">Belum ada projek. Jadilah yang pertama!</p>';
+  ).join('')||'<p class="note">Belum ada projek. Jadilah yang pertama!</p>';
 }
 renderHomeProjek();
 setInterval(renderHomeProjek, 5000); // auto-refresh: upload baru langsung muncul tanpa reload

@@ -4,18 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard — CodeBelajar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="dash">
 <aside class="sidebar">
-  <div class="logo">💻 Code<span>Belajar</span></div>
+  <div class="logo">💻 Code<span>Belajar</span><span class="dot">.</span></div>
   <div class="userbox"><div id="uAvatar" class="avatar">?</div><div><b id="uName">...</b><br><small id="uRole" class="role">...</small></div></div>
+  <div class="side-label">Menu Belajar</div>
   <button class="menu active" data-page="video" onclick="showPage('video',this)">🎥 Video Materi</button>
   <button class="menu" data-page="zoom" onclick="showPage('zoom',this)">🔵 Zoom / Live</button>
   <button class="menu" data-page="chat" onclick="showPage('chat',this)">💬 Live Chat <span id="chatBadge" class="badge" style="display:none">•</span></button>
   <button class="menu" data-page="materi" onclick="showPage('materi',this)">📄 Materi & Dokumen</button>
   <button class="menu" data-page="projek" onclick="showPage('projek',this)">🚀 Projek Siswa</button>
-  <div class="side-foot"><button class="btn outline small full" onclick="logout()">Keluar</button></div>
+  <div class="side-foot"><span class="hint">Butuh bantuan? Tanya lewat Live Chat 💬</span><button class="btn outline small full" onclick="logout()">Keluar</button></div>
 </aside>
 
 <main class="main">
